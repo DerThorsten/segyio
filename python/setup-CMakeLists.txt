@@ -11,7 +11,7 @@ find_package(Python COMPONENTS Interpreter Development.Module REQUIRED)
 python_add_library(_segyio MODULE WITH_SOABI segyio/segyio.cpp)
 
 
-target_link_libraries(_segyio segyio::segyio)
+target_link_libraries(_segyio PUBLIC segyio::segyio)
 
 if (MSVC)
     target_compile_options(_segyio
