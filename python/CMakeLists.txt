@@ -1,12 +1,10 @@
+
+set_property(GLOBAL PROPERTY TARGET_SUPPORTS_SHARED_LIBS TRUE) # does not need to be global :)
+set(CMAKE_SHARED_LIBRARY_CREATE_C_FLAGS "-s SIDE_MODULE=1")
+set(CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS "-s SIDE_MODULE=1")
+set(CMAKE_STRIP FALSE)  # used by default in pybind11 on .so modules # only for needed when using pybind11
+
 if (SKBUILD)
-
-    IF(EMSCRIPTEN)
-        set_property(GLOBAL PROPERTY TARGET_SUPPORTS_SHARED_LIBS TRUE) # does not need to be global :)
-        set(CMAKE_SHARED_LIBRARY_CREATE_C_FLAGS "-s SIDE_MODULE=1")
-        set(CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS "-s SIDE_MODULE=1")
-        set(CMAKE_STRIP FALSE)  # used by default in pybind11 on .so modules # only for needed when using pybind11
-    endif()
-
     # invoked as a part of scikit-build, so this is just a proxy for the python
     # extension cmake. this works around the fundamental limitation in cmake
     # that it looks only for directories with a CMakeLists.txt in it, not for a
